@@ -160,7 +160,7 @@ class Refund extends Component {
                           className="form-control"
                           placeholder="Enter Transaction Id"
                          required />
-                         <small className="form-text text-muted">Can Only Be Claimed 15 min after Other Person sent the Funds</small>
+                         <small className="form-text text-muted">Can Only Be Claimed 15 min after You sent the Funds</small>
                       </div>
                       <button
                         style = {{fontSize:20}} 

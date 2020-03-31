@@ -472,7 +472,7 @@ class Verify extends Component {
                           className="form-control"
                           placeholder="Enter Your Private Key"
                           required />
-                          <small className="form-text text-muted">We Dont't Store Your Private Key - It Is Totally Safe</small>
+                          <small className="form-text text-muted">We Don't Store Your Private Key - It Is Totally Safe</small>
                       </div>
                       <div className="container" align="left">
                         <input id="keyShow"

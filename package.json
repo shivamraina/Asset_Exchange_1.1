@@ -2,7 +2,7 @@
   "name": "asset-exchange",
   "version": "0.1.0",
   "description": "Asset Exchange Stop",
-  "author": "sraina753@gmail.com",
+  "author": "assetexchangestop@gmail.com",
   "dependencies": {
     "axios": "^0.19.2",
     "babel-polyfill": "6.26.0",
