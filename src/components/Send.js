@@ -84,7 +84,7 @@ class Send extends Component {
     }
   }
 
-  sendFunds=(amount, address, expectedAddress, consensusKey, mail)=>{
+  sendFunds=(amount, address, expectedAddress, consensusKey)=>{
     this.setState({ loading: true })
     var pointCount=0;
     for(var i=0;i< amount.length; i++) {
@@ -130,7 +130,7 @@ class Send extends Component {
       return;
     }
 
-    if(consensusKey.length<10){
+    if(consensusKey.length<5){
       window.alert("Consensus Key Too Short")
       this.setState({loading:false})
       return;
@@ -152,6 +152,7 @@ class Send extends Component {
     this.state.swapcontract.methods.sendFunds(address,expectedAddress,consensusKey).send({ from: this.state.account , value:amount}).then(result => 
     {
       window.alert("Your Unique Transaction Id is : "+ result.events.fundReceived.returnValues._currentTransactionId)
+      window.open("file.html")
       this.setState({loading:false})
     },e=>{
       window.alert("Transaction Failed - Check Amount")
@@ -217,15 +218,14 @@ class Send extends Component {
                       const address = this.addressOfReceiver.value
                       const expectedAddress = this.expectedAddress.value
                       const consensusKey = this.consensusKey.value
-                      const mail = this.mail.value
-                      this.sendFunds(amount, address, expectedAddress,  consensusKey, mail)
+                      this.sendFunds(amount, address, expectedAddress,  consensusKey)
                     }}>
                       <div className="form-group">
                         <input id="fundAmount" className="form-control" type="text" placeholder="Amount Of Funds You Want To Send (in Ether)" 
                           ref={(input) => { this.fundAmount = input }} required />
                       </div>
                       <div className="form-group">
-                        <input id="addressOfReceiver" className="form-control" type="text" placeholder="Address Of Receiver Wallet - On The Same Network You Are Transferring From"
+                        <input id="addressOfReceiver" className="form-control" type="text" placeholder="Address Of Receiver Wallet You Are Transferring To - On The Same Network"
                           ref={(input) => { this.addressOfReceiver = input }} required />
                         <small className="form-text text-muted">Receiver Address On Same Network That They Asked You To Send Funds On</small>
                       </div>
@@ -235,11 +235,7 @@ class Send extends Component {
                         <small className="form-text text-muted">The Other Person Is Expected To Send The Funds On This Address On Other Network</small>
                       </div>
                       <div className="form-group">
-                        <input id="mail" className="form-control" type="text" placeholder="Enter Other Person's Mail"
-                          ref={(input) => { this.mail = input }} required/>
-                      </div>
-                      <div className="form-group">
-                        <input id="consensusKey" className="form-control" type="password" placeholder="Enter your Consensus Key - Must Be Atleast 10 Digits Long"
+                        <input id="consensusKey" className="form-control" type="password" placeholder="Enter your Consensus Key - Must Be Atleast 5 Digits Long"
                           ref={(input) => { this.consensusKey = input }} required/>
                         <small className="form-text text-muted">Don't Share with Anyone and Don't Forget</small>
                       </div>
@@ -256,7 +252,7 @@ class Send extends Component {
 		      </div>
         </div>  
         <footer className="page-footer font-small blue">
-        	<div className="footer-copyright text-center py-3">
+        	<div className="footer-copyright text-center py-3 fixed-bottom">
             <p>© 2020 Copyright: Developed Through Trust</p>
           </div>  
         </footer> 
