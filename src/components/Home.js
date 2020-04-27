@@ -39,11 +39,11 @@ class Home extends Component{
 				  	</button>
 				  	<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 				   		<div className="navbar-nav">
-				      		<button className="btn btn-primary btn-sm mx-3" onClick={this.renderHome}>Home</button>
+				      		<button className="btn btn-secondary btn-sm mx-3" onClick={this.renderHome}>Home</button>
 				      		<button className="btn btn-success btn-sm mx-3" onClick={this.renderSend}>Send</button>
-				      		<button className="btn btn-secondary btn-sm mx-3" onClick={this.renderCheck}>Check</button>
-				      		<button className="btn btn-info btn-sm mx-3" onClick={this.renderVerify}>Verify/Receive</button>
-				      		<button className="btn btn-danger btn-sm mx-3" onClick={this.renderRefund}>Refund</button>
+				      		<button className="btn btn-primary btn-sm mx-3" onClick={this.renderCheck}>Check</button>
+				      		<button className="btn btn-danger btn-sm mx-3" onClick={this.renderVerify}>Verify/Receive</button>
+				      		<button className="btn btn-success btn-sm mx-3" onClick={this.renderRefund}>Refund</button>
 				    	</div>
 				  	</div>	
 				</nav>
@@ -52,7 +52,7 @@ class Home extends Component{
 				  <p className="blockquote">This is a one stop solution for Ethereum Blockchain Interoperability</p>
 				  <hr className="my-4"/>
 				  <h4>The Future of Cross Chain Coin Swaps</h4>
-				  <a className="btn btn-primary btn-lg" href="info.pdf" role="button" target="_blank">Learn more</a>
+				  <a className="btn btn-primary btn-lg" href="https://cointelegraph.com/explained/blockchain-interoperability-explained" rel="noopener noreferrer" role="button" target="_blank">Learn more</a>
 				</div>
 				<h5 align="center">DEVELOPERS:</h5>
 				<div className="container" align="center">

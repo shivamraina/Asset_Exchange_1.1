@@ -234,7 +234,7 @@ class Verify extends Component {
     console.log(raw)
 
      // Broadcast the transaction
-    var eventAbi = SwapContract.networks[3]['events']["0x27d7f0244521185a429bd61dd91258ee126ed6cff2e4ea67c43bebc68e040e8f"]["inputs"]
+    var eventAbi = SwapContract.networks[42]['events']["0x27d7f0244521185a429bd61dd91258ee126ed6cff2e4ea67c43bebc68e040e8f"]["inputs"]
     var receipt = await web3.eth.sendSignedTransaction(raw)
     console.log(receipt)
     res2 = web3.eth.abi.decodeLog(eventAbi,receipt.logs[0].data,receipt.logs[0].topics)
@@ -285,7 +285,7 @@ class Verify extends Component {
     }
     else
     {    
-      functionAbi = swapcontract2.methods.verifyFunds(mytransactionId).encodeABI();
+      functionAbi = swapcontract2.methods.verifyFunds(mytransactionId, address, consensusKey).encodeABI();
       txCount = await web3.eth.getTransactionCount(account1)
       console.log("1")
 
@@ -321,7 +321,7 @@ class Verify extends Component {
         if(receipt2.status){
           
           web3 = window.web3
-          functionAbi = this.state.swapcontract.methods.verifyFunds(transactionId).encodeABI();
+          functionAbi = this.state.swapcontract.methods.verifyFunds(transactionId,account1,consensusKey).encodeABI();
           txCount = await web3.eth.getTransactionCount(account1)
 
           txObject = {
@@ -395,14 +395,14 @@ class Verify extends Component {
               <div className="navbar-nav">
                 <button className="btn btn-primary btn-sm mx-3" onClick={this.renderHome}>Home</button>
                   <button className="btn btn-success btn-sm mx-3 " onClick={this.renderSend}>Send</button>
-                  <button className="btn btn-secondary btn-sm mx-3" onClick={this.renderCheck}>Check</button>
-                  <button className="btn btn-info btn-sm mx-3" onClick={this.renderVerify}>Verify/Receive</button>
-                  <button className="btn btn-danger btn-sm mx-3" onClick={this.renderRefund}>Refund</button>
+                  <button className="btn btn-primary btn-sm mx-3" onClick={this.renderCheck}>Check</button>
+                  <button className="btn btn-secondary btn-sm mx-3" onClick={this.renderVerify}>Verify/Receive</button>
+                  <button className="btn btn-success btn-sm mx-3" onClick={this.renderRefund}>Refund</button>
                 </div>
             </div>  
             <ul className="navbar-nav px-3">
               <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-                <large className="text-white"><span id="account">{this.state.account}</span></large>
+                <span className="text-white" id="account">{this.state.account}</span>
               </li>
             </ul>
             { 
@@ -447,7 +447,7 @@ class Verify extends Component {
                           required />
                       </div>
                       <div className="form-group" align="left">
-                        <label for="sel">Select Your Transaction Network (Network You Did The Transaction On)</label>
+                        <label>Select Your Transaction Network (Network You Did The Transaction On)</label>
                         <select className="form-control" id="sel">
                           <option>Rinkeby</option>
                           <option>Ropsten</option>
@@ -461,7 +461,7 @@ class Verify extends Component {
                           type="text"
                           ref={(input) => { this.address = input }}
                           className="form-control"
-                          placeholder="Enter Your Transaction Address - The address on your above selected network from which you sent the funds earlier"
+                          placeholder="Enter Your Address on your above selected network from which you sent the funds earlier"
                           required />
                       </div>
                       <div className="form-group mr-sm-2">

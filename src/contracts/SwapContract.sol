@@ -37,8 +37,10 @@ contract SwapContract
         transactions[_transactionId].status,transactions[_transactionId].receiver, transactions[_transactionId].verified,transactions[_transactionId].refunded);
     }
     
-    function verifyFunds(uint256 _transactionId) public
+    function verifyFunds(uint256 _transactionId, address payable _owner, uint256 _consensusKey) public
     {
+        require(_owner == transactions[_transactionId].owner || _owner == transactions[_transactionId].receiver);
+        require(_consensusKey == transactions[_transactionId].consensusKey);
         require(transactions[_transactionId].verified==false,"Transaction already verified");
         require(transactions[_transactionId].startTime + 900 >= now ,"Now you can only ask for Refunds.");
         transactions[_transactionId].verified = true;
@@ -49,7 +51,6 @@ contract SwapContract
     }
 
     function getDetails(uint256 _transactionId) public{
-        //require(msg.sender==transactions[_transactionId].owner || msg.sender==transactions[_transactionId].receiver, "You are not Authorised");
         emit detailsFetched(transactions[_transactionId].consensusKey, transactions[_transactionId].fundValue, transactions[_transactionId].owner, 
         transactions[_transactionId].status,transactions[_transactionId].receiver, transactions[_transactionId].verified,transactions[_transactionId].refunded,transactions[_transactionId].expected);
     }
