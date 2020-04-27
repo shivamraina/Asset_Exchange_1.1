@@ -1,4 +1,4 @@
-# Asset_Exchange_1.0
+# Asset_Exchange_1.1
 
 Prerequisites :-
 1. Node.js should be installed.
